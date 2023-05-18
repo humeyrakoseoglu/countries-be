@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/countries 
+    username: root
+    password: 414141
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      #format_sql: true
+      #dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    open-in-view: false

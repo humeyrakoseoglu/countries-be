@@ -1,0 +1,90 @@
+version: '3'
+services:
+  mysql_db:
+    image: mysql
+    environment: 
+      MYSQL_DATABASE: 'countries'
+      MYSQL_USER: 'hum'
+      MYSQL_PASSWORD: '414141'
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+        - ./mysql/db-data:/var/lib/mysql
+    ports:
+        - '5555:3306'
+    networks:
+      - country-mysql
+  countries-springboot:
+    image: countries-springboot
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/countries
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - '4141:8080'
+    depends_on:
+      - mysql_db
+    networks:
+      - country-mysql
+networks:
+  country-mysql:
+
+
+
+#version: '3'
+#services:
+#  db:
+#    image: mysql
+#    container_name: mysqldatabase
+#    build:
+#        context: .
+#        dockerfile: ./Dockerfile
+#        args:
+#            - database=countries
+#            - password=414141
+#    volumes:
+#        - ./mysql:/var/lib/mysql
+#    ports:
+#        - "3307:3306"
+
+
+#version: "3.8"
+#
+#services:
+#
+#  mysqldb:
+#    image: mysql
+#    container_name: mysqldb
+#    environment:
+#      MYSQL_DATABASE: 'countries'
+#      MYSQL_ROOT_PASSWORD: '414141'
+#    volumes:
+#      - ./mysql/db:/var/lib/mysql
+#    ports:
+#      - '3307:3306'
+#    networks:
+#      - country-mysql
+#
+#  server:
+#    build: .
+#    ports:
+#      - '8080:8080'
+#    depends_on:
+#      - mysqldb
+#    networks:
+#      - country-mysql
+#networks:
+#  country-mysql:
+
+    
+ # version: '3.1'
+ # services:
+ # db:  
+ #   image: mysql
+ #   restart: always
+ #   environment:
+ #     MYSQL_ROOT_PASSWORD: '414141'
+ #   ports:
+ #     - "3307:3307"
+ #   volumes:
+ #     - ./mysql:/var/lib/mysql
