@@ -60,5 +60,10 @@ In this project<br/>
 The ports for mysql are '5555:3306'. 5555 is port. 3306 is the inner port of the container.<br/>
 The ports for the Spring Boot project are '4141:8080 ' . 4141 is external port. In other words, it is the port we will use when we try to reach the application through the Docker container. 8080 is the inner port of the container.<br/>
 
-Now we can send the request to the back-end via the url http://localhost:4141/.
+Now we can send the request to the back-end via the url http://localhost:4141/.<br/>
 
+Here are some endpoints you can call:<br/>
+- http://localhost:4141/countries/one-time-insert
+- http://localhost:4141/countries/getCountries
+- http://localhost:4141/countries/filter?currency=XOF&phone=226&continent=AF
+- http://localhost:4141/countries/name/Turkey
