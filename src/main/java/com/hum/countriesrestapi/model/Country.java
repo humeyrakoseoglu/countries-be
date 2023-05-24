@@ -1,7 +1,5 @@
 package com.hum.countriesrestapi.model;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -10,14 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-@Data
-@Builder
+@Data // @ToString, @EqualsAndHashCode, @Getter ve @Setter işlevlerini birleştirir.
+@Builder  //sınıfa Builder Pattern uygulamayı saglar
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity //Sınıfları entity olarak framework e tanıtır
 @Table(name = "country") //bir varlığın veritabanında hangi tabloya karşılık geldiğini belirtir
 public class Country {
-  
 
   @Id //bir entity sınıfının anahtar alanını belirtir
   @Column(name = "id") //bir sınıf alanının veritabanındaki bir sütunla eşleştiğini belirtir
@@ -32,7 +29,4 @@ public class Country {
   private String currency;
   private String languages;
   private String flag;
-
-
-
 }

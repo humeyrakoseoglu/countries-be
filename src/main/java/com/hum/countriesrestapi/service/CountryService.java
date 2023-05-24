@@ -18,7 +18,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 
-@Service //to indicate that they're holding the business logic
+@Service //bir sınıfın  iş mantığını içeren bir servis sınıfı olduğunu belirtir 
 public class CountryService { 
     /*
      * Bu sınıf country verilerinin bir JSON dosyasından yüklenmesi, ülkelerin veritabanına eklenmesi ve çeşitli koşullara göre ülke verilerinin alınmasını sağlar
@@ -37,12 +37,6 @@ public class CountryService {
         this.entityManager = entityManager;
     }
 
-
-   // public Country insertCountry(Country country) { //ülke ekler
-   //     loadJson.loadJson();
-   //     return countryRepository.save(country);
-   // }
-
     //@Transactional // işlemin tüm adımlarını tek bir işlem olarak işaretler
     public void oneTimeInsert() { //tüm verileri insert eder
             countryRepository.saveAll( loadJson.loadJson());//yoksa verileri jsondan veritabanına yükle);
@@ -57,10 +51,17 @@ public class CountryService {
         return countryRepository.findAll();
     }
 
+    public void deleteCountryById(String id) { //girilen ülke koduna sahip ülkeyi siler
+        countryRepository.deleteById(id);
+    }
+
     public Country getCountryByName(String name)  {//girilen isme sahip ülkeyi döndürür
         return countryRepository.getCountryByName(name);
     }
 
+    public Country insertCountry(Country newCountry)  {//girilen isme sahip ülkeyi döndürür
+        return countryRepository.save(newCountry);
+    }
 
     public List<Country> getCountryByPhoneCode(int phoneCode) { //girilen telefon koduna sahip ülkeleri döndürür
        return countryRepository.getByPhone(phoneCode);
@@ -104,6 +105,7 @@ public class CountryService {
         return resultList;
     }
 
+}
 
 /* JPA Repository kullanmadan Criteria API ile olsaydı
 
@@ -130,5 +132,3 @@ public class CountryService {
          }
 
 */
-   
-}

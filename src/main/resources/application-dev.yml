@@ -1,7 +1,10 @@
+#Geliştirme Ortamı Konfigürasyonu
 spring:
   config:
     activate:
       on-profile: dev
+  application:
+    name: countries-be
   datasource:
     url: jdbc:mysql://localhost:3306/countries 
     username: root
@@ -12,5 +15,14 @@ spring:
       ddl-auto: update
       #format_sql: true
       #dialect: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+        jdbc.batch_size: 20
+        cache.use_query_cache: false
+        cache.use_second_level_cache: false
+        cache.use_structured_entries: false
+        cache.use_minimal_puts: false
     show-sql: true
     open-in-view: false

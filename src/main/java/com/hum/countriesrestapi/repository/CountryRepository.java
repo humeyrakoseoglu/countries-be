@@ -11,4 +11,5 @@ import com.hum.countriesrestapi.model.Country;
 public interface CountryRepository extends JpaRepository<Country, String> { //Spring Data JPA'nın sorgu oluşturma mekanizmasını kullanabilirsin
     List<Country> getByPhone(int phonecode);
     Country getCountryByName(String name);
+    void deleteById(String id);
 } 

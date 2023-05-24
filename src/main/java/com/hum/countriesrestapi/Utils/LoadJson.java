@@ -1,6 +1,5 @@
 package com.hum.countriesrestapi.Utils;
 
-import java.io.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.*;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hum.countriesrestapi.model.Country;
 
@@ -19,19 +17,15 @@ public class LoadJson {
     public Map<String, Country> countries;
     public List<Country> countriesList = new ArrayList<>();
     private String flagsBaseUrl = "http://aedemirsen.bilgimeclisi.com/country_flags";
-    private final static String COUNTRY_JSON = "src/main/resources/countries.json";
     
     public  List<Country> loadJson() { // JSON dosyasını okur ve verileri nesnelere dönüştürür
         File jsonFile = new File("assets/countries.json");
-       // File jsonFile = new File("countries.json");
-       //File jsonFile = new File(getClass().getResource("countries.json").getFile());
-
 
         try{
-            HashMap result =
+            HashMap<String, Country> result =
             new ObjectMapper().readValue(jsonFile, HashMap.class);//jsonFile
              //all country codes.
-             Set<String> keySet = result.keySet();
+             Set<String> keySet =  result.keySet();
              for (Object id : keySet) {
                  Map<String, Object> m = (Map<String, Object>) result.get(id.toString());
                  String name = m.get("name").toString();
