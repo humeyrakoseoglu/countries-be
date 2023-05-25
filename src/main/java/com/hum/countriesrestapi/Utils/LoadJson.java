@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hum.countriesrestapi.model.Country;
 
+@SuppressWarnings("unchecked")
 @Component
 public class LoadJson {
     public Map<String, Country> countries;
