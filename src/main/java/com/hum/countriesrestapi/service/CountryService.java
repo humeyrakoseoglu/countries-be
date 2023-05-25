@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hum.countriesrestapi.Utils.LoadJson;
+import com.hum.countriesrestapi.Utils.DatabaseOp;
 import com.hum.countriesrestapi.model.Country;
 import com.hum.countriesrestapi.repository.CountryRepository;
 
@@ -21,7 +21,7 @@ import jakarta.persistence.criteria.Root;
 @Service //bir sınıfın  iş mantığını içeren bir servis sınıfı olduğunu belirtir 
 public class CountryService { 
     /*
-     * Bu sınıf country verilerinin bir JSON dosyasından yüklenmesi, ülkelerin veritabanına eklenmesi ve çeşitli koşullara göre ülke verilerinin alınmasını sağlar
+     * Bu sınıf  ülkelerin veritabanına eklenmesi ve çeşitli koşullara göre ülke verilerinin alınmasını sağlar
      */
 
     @Autowired
@@ -31,7 +31,7 @@ public class CountryService {
     private CountryRepository countryRepository; // veritabanı işlemlerine erişmek için CountryRepository kullanılır
 
     @Autowired
-    private LoadJson loadJson; // file
+    private DatabaseOp loadJson; // file
 
     public CountryService(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -77,7 +77,7 @@ public class CountryService {
         } else if ("dsc".equalsIgnoreCase(order)) {
             orderClause = criteriaBuilder.desc(root.get("phone"));
         } else {
-            throw new IllegalArgumentException("order parametresi 'asc' veya 'desc' olmalidir.");
+            throw new IllegalArgumentException("order 'asc' veya 'dsc' olmalı");
         }
         query = query.orderBy(orderClause);
         List<Country> resultList = entityManager.createQuery(query).getResultList();

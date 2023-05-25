@@ -14,7 +14,7 @@ import com.hum.countriesrestapi.model.Country;
 
 @SuppressWarnings("unchecked")
 @Component
-public class LoadJson {
+public class DatabaseOp {
     public Map<String, Country> countries;
     public List<Country> countriesList = new ArrayList<>();
     private String flagsBaseUrl = "http://aedemirsen.bilgimeclisi.com/country_flags";
